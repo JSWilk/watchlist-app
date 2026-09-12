@@ -5,6 +5,8 @@ import com.watchlist.entity.Title;
 import com.watchlist.service.TitleService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/titles")
 public class TitleController {
@@ -13,6 +15,20 @@ public class TitleController {
 
     public TitleController(TitleService titleService) {
         this.titleService = titleService;
+    }
+
+    @GetMapping
+    public List<Title> getAllTitlesByCategory(@RequestParam String category) {
+        return titleService.getAllTitlesByCategory(category);
+    }
+
+    @GetMapping("/random")
+    public Title getRandomTitle(@RequestParam String category,
+                                 @RequestParam(required = false) Long watchlistId) {
+        if (watchlistId != null) {
+            return titleService.getRandomTitle(watchlistId);
+        }
+        return titleService.getRandomTitle(category);
     }
 
     @PostMapping

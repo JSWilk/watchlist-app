@@ -11,4 +11,6 @@ public interface TitleRepository extends JpaRepository<Title, Long> {
     Optional<Title> findByNameIgnoreCaseAndCategory(String name, String category);
 
     List<Title> findByCategoryAndWatchedFalse(String category);
+
+    List<Title> findByCategory(String category);
 }

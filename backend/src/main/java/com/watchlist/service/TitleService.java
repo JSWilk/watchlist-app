@@ -27,8 +27,8 @@ public class TitleService {
         return repository.findById(titleId).orElseThrow();
     }
 
-    public Title getRandomTitle(Watchlist watchlist){
-        List<ListEntry> entries = listEntryRepository.findByWatchlist_IdAndTitle_WatchedFalse(watchlist.getId());
+    public Title getRandomTitle(Long watchlistId){
+        List<ListEntry> entries = listEntryRepository.findByWatchlist_IdAndTitle_WatchedFalse(watchlistId);
         if (entries.isEmpty()) {
             throw new IllegalStateException("No unwatched titles in this watchlist");
         }
@@ -51,6 +51,10 @@ public class TitleService {
 
     public List<Title> getAllTitles(){
         return repository.findAll();
+    }
+
+    public List<Title> getAllTitlesByCategory(String category){
+        return repository.findByCategory(category);
     }
 
     public Title createTitle(Title title){

@@ -6,6 +6,8 @@ CREATE TABLE title(
     provider              VARCHAR(50),
     watched               BOOLEAN       DEFAULT false
 );
+CREATE UNIQUE INDEX idx_title_unique_name_category
+ON title (LOWER(name), category);
 
 CREATE TABLE lists(
     id     SERIAL         PRIMARY KEY,

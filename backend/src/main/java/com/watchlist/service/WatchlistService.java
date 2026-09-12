@@ -26,9 +26,9 @@ public class WatchlistService{
         repository.deleteById(watchlistId);
     }
 
-    public void editWatchlist(Watchlist oldWatchlist, Watchlist newWatchlist){
+    public Watchlist editWatchlist(Watchlist oldWatchlist, Watchlist newWatchlist){
         oldWatchlist.setName(newWatchlist.getName());
-        repository.save(oldWatchlist);
+        return repository.save(oldWatchlist);
     }
 
     public void createWatchlist(Watchlist watchlist){
